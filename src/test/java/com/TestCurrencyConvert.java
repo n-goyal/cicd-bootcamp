@@ -19,8 +19,8 @@ public class TestCurrencyConvert {
 	}
 	@Test
 	public void euroCheck() {
-		int rupee=84;
-		int rate=168;
+		int rupee=168;
+		int rate=84;
 		CurrencyConvert cc = new CurrencyConvert();
 		Assertions.assertEquals(2, cc.rupees2Euros(rupee, rate));
 	}
