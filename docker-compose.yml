@@ -1,0 +1,10 @@
+version: '2.0'
+services:
+  cicd-bootcamp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: v1.5
+    restart: always
+    ports:
+      - "9090:8080"
