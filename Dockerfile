@@ -8,6 +8,8 @@ COPY ${JAR_FILE} app.war
 
 RUN echo "Creation of your docker image is in progress, please hold on for a moment"
 
+EXPOSE 9090
+
 ENTRYPOINT ["java", "-jar", "app.war"]
 
-MAINTAINER "goyalnitin634@gmail.com"
+LABEL MAINTAINER "goyalnitin634@gmail.com"
