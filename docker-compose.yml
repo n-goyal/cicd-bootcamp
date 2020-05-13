@@ -2,6 +2,6 @@ version: '2.0'
 services:
   cicd-bootcamp:
     build: .
-    image: v1.5
+    image: nitingo/cicd-bootcamp:v1.5
     ports:
       - "9090:8080"
