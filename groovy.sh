@@ -8,9 +8,21 @@ node{
     }
     
     stage('mvn build'){
-        def mvnHome = tool name: 'maven3', type: 'maven'
-        def mvnCMD = "${mvnHome}/bin/mvn"
-        sh "${mvnCMD} package"
+        try{
+            def mvnHome = tool name: 'maven3', type: 'maven'
+            def mvnCMD = "${mvnHome}/bin/mvn"
+            sh "${mvnCMD} package"
+        }
+        catch(Exception err){
+            currentBuild.result='FAILURE'
+        }
+        finally{
+            emailext (
+                subject: "Job '${env.JOB_NAME} ${env.BUILD_NUMBER}'",
+                body: """<p>Check console output at <a href="${env.BUILD_URL}">${env.JOB_NAME}</a></p>""",
+                to: "nk.goyal@tcs.com"
+            )
+        }
     }
     
     stage('Docker Build Image'){
@@ -35,3 +47,4 @@ node{
         sh 'docker rm spring-container'
     }
 }
+
