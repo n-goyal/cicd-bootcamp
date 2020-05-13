@@ -1,15 +1,14 @@
-FROM openjdk:8-jdk-alpine
+FROM tomcat:jdk8
 
 VOLUME /tmp
 
-ARG JAR_FILE=/target/*.war
+EXPOSE 8080
 
-COPY ${JAR_FILE} app.war
+ADD /target/*.war /usr/local/tomcat/webapps
 
-RUN echo "Creation of your docker image is in progress, please hold on for a moment"
+EXPOSE 8080
 
-EXPOSE 9090
-
-ENTRYPOINT ["java", "-jar", "app.war"]
+CMD ["catalina.sh", "run"]
 
 LABEL MAINTAINER "goyalnitin634@gmail.com"
+
